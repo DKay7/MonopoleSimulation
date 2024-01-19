@@ -37,9 +37,10 @@ def compute_position(time, init_coords=(1, 0, np.pi / 2), init_speeds=(1, 1 / 25
     compute_phi = lambda tau_: np.arctan( -( L0*l*np.sin(alpha) ) / ( L0**2*np.cos(alpha) + k**2 * q**2 ) )
     phi = compute_phi(tau)
 
+    theta = np.arccos(-k*q *L0/l * (1 - np.cos(alpha)) )
     
     # theta = np.pi / 2 + np.arctan( ( l**2 - 2*L0**2 )  / ( 2*k*q*L0 ) )
-    theta = np.pi / 2 - np.pi / 100
+    # theta = np.pi / 2 - np.pi / 100
 
     return (r, phi, theta)
 
