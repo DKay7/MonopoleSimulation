@@ -60,15 +60,19 @@ class Simulation:
         q = self.charge.q
 
         tau = current_time / np.sqrt(1 + v_phi**2 + v_r**2)
-        r = np.sqrt( (v_phi**2 + v_r**2)*tau**2 - 2*r0*v_r*tau + r0**2 )
+        r = np.sqrt( (v_phi**2 + v_r**2)*tau**2 - 2*r0*v_r*tau + r0**2 + self.charge.init_coords.phi**2)
 
         L0 = m * r0 * v_phi
         l = np.sqrt(k**2 * q**2 + L0**2)
 
         alpha = l/L0 * (np.arctan( ((v_phi**2 + v_r**2)*tau + r0*v_r)/(r0*v_phi) ) - np.arctan( v_r / v_phi ))
-        phi = np.arctan( -( L0*l*np.sin(alpha) ) / ( L0**2*np.cos(alpha) + k**2 * q**2 ) )
-        theta = np.arccos(-k*q *L0/l * (1 - np.cos(alpha)) )
+        phi = np.arctan( -( L0*l*np.sin(alpha) ) / ( L0**2 * np.cos(alpha) + k**2 * q**2 ) )
+        # phi = 10**6 *np.arctan( -( L0*l*np.sin(alpha) ) / ( L0**2 * np.cos(alpha) + k**2 * q**2 ) ) + self.charge.init_coords.phi
+        theta = np.arccos(-k*q * L0/l * (1 - np.cos(alpha)) )
         
+        # print(self.charge.init_coords.phi)
+        # print(self.charge.init_coords.theta)
+        # print(phi.max() - phi.min(), theta.max() - theta.min()) 
         return SphereCoordinates(r, phi, theta)
 
  
