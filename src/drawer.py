@@ -34,9 +34,9 @@ def start_simulation(charge, total_time=500):
     # print(points[0, 0], points[0, 1], points[0, 2])
 
     x, y, z = points[:, 0], points[:, 1], points[:, 2]
-    monopole = go.Scatter3d(x=[0], y=[0], z=[0], name="Позиция монополя", marker={'size': 2, 'color': 'orange'})
-    start_position = go.Scatter3d(x=[x[0]], y=[y[0]], z=[z[0]], name="Начальная позиция заряда",  marker={'size': 2, 'color': 'green'})
-    trace = go.Scatter3d(x=x, y=y, z=z, name="Траектория", marker={'size': 0.5, 'color': np.sqrt(x**2 + y**2 + z**2), 'opacity': 0.8, 'colorscale': 'Viridis'})
+    monopole = go.Scatter3d(x=[0], y=[0], z=[0], mode='markers', name="Позиция монополя", marker={'size': 2, 'color': 'orange'})
+    start_position = go.Scatter3d(x=[x[0]], y=[y[0]], z=[z[0]], mode='markers', name="Начальная позиция заряда",  marker={'size': 2, 'color': 'green'})
+    trace = go.Scatter3d(x=x, y=y, z=z, mode='markers', name="Траектория", marker={'size': 0.5, 'color': np.sqrt(x**2 + y**2 + z**2), 'opacity': 0.8, 'colorscale': 'Viridis'})
     
     fig = go.Figure(trace, layout=go.Layout())
     fig.add_trace(monopole)
