@@ -19,6 +19,9 @@ def local_simulation(total_time=100000):
     ax = plt.axes(projection='3d')
     x, y, z = points[:, 0], points[:, 1], points[:, 2]
     ax.plot3D(x, y, z, '--', color='black')
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    ax.set_zlabel("Z")
     ax.scatter3D(x[0], y[0], z[0], '*', color='orange', alpha=0.5)
     ax.scatter3D(0, 0, 0, 'A', color='green', alpha=0.9)
     
