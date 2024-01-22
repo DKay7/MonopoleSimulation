@@ -30,9 +30,10 @@ def local_simulation(total_time=100000):
 def start_simulation(charge, total_time=1e10):
     simulation = Simulation(charge, total_time)
     points = simulation.run_experiment()
-    
+    # print(points[0, 0], points[0, 1], points[0, 2])
+
     x, y, z = points[:, 0], points[:, 1], points[:, 2]
-    trace = go.Scatter3d(x=x, y=y, z=z, marker={'size': 0.5, 'color': z, 'opacity': 0.8, 'colorscale': 'Viridis'})
+    trace = go.Scatter3d(x=x, y=y, z=z, marker={'size': 0.5, 'color': np.sqrt(x**2 + y**2 + z**2), 'opacity': 0.8, 'colorscale': 'Viridis'})
     fig = go.Figure(trace, layout=go.Layout())
     
     return fig
