@@ -27,7 +27,7 @@ def local_simulation(total_time=100000):
     
     plt.show()
 
-def start_simulation(charge, total_time=100000):
+def start_simulation(charge, total_time=1e10):
     simulation = Simulation(charge, total_time)
     points = simulation.run_experiment()
     

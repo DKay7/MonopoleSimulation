@@ -36,16 +36,14 @@ class ElectricCharge:
 
 
 class Simulation:
-    def __init__(self, charge: ElectricCharge, total_time: int, time_step: int = 10):
+    def __init__(self, charge: ElectricCharge, total_time: int):
         self.charge = charge
         self.total_time = total_time
-        self.time_step = time_step
     
     def run_experiment(self):
-        points = np.empty((0, 3))
-
-        time = np.arange(0, self.total_time, self.time_step)
+        time = np.linspace(0, self.total_time, int(5e4))
         coords = self._compute_position(time)
+
         return coords.decart.T
 
     def _compute_position(self, current_time):
@@ -68,7 +66,7 @@ class Simulation:
         alpha = l/L0 * (np.arctan( ((v_phi**2 + v_r**2)*tau + r0*v_r)/(r0*v_phi) ) - np.arctan( v_r / v_phi ))
         phi = np.arctan( -( L0*l*np.sin(alpha) ) / ( L0**2 * np.cos(alpha) + k**2 * q**2 ) )
         # phi = 10**6 *np.arctan( -( L0*l*np.sin(alpha) ) / ( L0**2 * np.cos(alpha) + k**2 * q**2 ) ) + self.charge.init_coords.phi
-        theta = np.arccos(-k*q * L0/l * (1 - np.cos(alpha)) )
+        theta = np.arccos(-k*q * L0/l**2 * (1 - np.cos(alpha)) )
         
         # print(self.charge.init_coords.phi)
         # print(self.charge.init_coords.theta)
