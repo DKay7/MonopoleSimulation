@@ -5,10 +5,10 @@ from mpl_toolkits import mplot3d
 import numpy as np
 import plotly.graph_objects as go
 
-def local_simulation(total_time=100000):
-    init_coords=SphereCoordinates(1, 0, np.pi / 2)
-    init_speeds=SphereCoordinates(1, 1 / 25, 0)
-    mass = 1
+def local_simulation(total_time=500):
+    init_coords=SphereCoordinates(100, 0, np.pi / 2)
+    init_speeds=SphereCoordinates(1, 1 / 100, 0)
+    mass = 20
     q = 1*10**-5
     
     charge = ElectricCharge(init_coords, init_speeds, mass, q)
@@ -27,7 +27,7 @@ def local_simulation(total_time=100000):
     
     plt.show()
 
-def start_simulation(charge, total_time=1e10):
+def start_simulation(charge, total_time=500):
     simulation = Simulation(charge, total_time)
     points = simulation.run_experiment()
     # print(points[0, 0], points[0, 1], points[0, 2])
